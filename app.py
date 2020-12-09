@@ -1,6 +1,8 @@
 from flask import Flask, jsonify, g
+from flask_cors import CORS
 
 import models
+from resources.cooks import cook
 
 DEBUG = True
 PORT = 8000
@@ -24,6 +26,10 @@ def after_request(response):
 @app.route('/')
 def index():
   return 'Let\'s get cookin\''
+
+CORS(cook, origins='*', supports_credentials=True)
+
+app.register_blueprint(cook)
 
 # Start the app and create tables
 if __name__ == '__main__':
