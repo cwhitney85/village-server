@@ -19,11 +19,11 @@ class Users(UserMixin, Model):
 class Cooks(Model):
   username = CharField(unique=True)
   specialty = CharField()
-  location = CharField()
+  user_location = ForeignKeyField(Users.address, backref='location')
   avatar = CharField(default='https://tfnbk-bank.com/wp-content/uploads/2018/10/avatar.png')
   banner = CharField()
 
-  cook = ForeignKeyField(Users, backref='cook')
+  user = ForeignKeyField(Users, backref='cook')
 
   class Meta:
     database = DATABASE
@@ -36,7 +36,7 @@ class Meals(Model):
   recipe = TextField()
   image = CharField()
 
-  meal = ForeignKeyField(Cooks, backref='meals')
+  cook = ForeignKeyField(Cooks, backref='meal')
 
   class Meta:
     database = DATABASE
