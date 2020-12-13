@@ -17,10 +17,10 @@ class Users(UserMixin, Model):
 
 # Cook model for producers - every cook is a user... not every user is a cook
 class Cooks(Model):
-  username = CharField()
+  username = CharField(unique=True)
   specialty = CharField()
   location = CharField()
-  avatar = CharField()
+  avatar = CharField(default='https://tfnbk-bank.com/wp-content/uploads/2018/10/avatar.png')
   banner = CharField()
 
   cook = ForeignKeyField(Users, backref='cook')
