@@ -25,7 +25,7 @@ def after_request(response):
 # Default Index Route
 @app.route('/')
 def index():
-  return 'Let\'s get cookin\''
+  return "<h1>Let's Get Cookin'</h1>"
 
 CORS(cook, origins='*', supports_credentials=True)
 
