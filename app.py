@@ -42,10 +42,10 @@ def after_request(response):
 def index():
   return "<h1>Let's Get Cookin'</h1>"
 
-CORS(cook, origins='*', supports_credentials=True)
+CORS(cook, origins=['*'], supports_credentials=True)
 app.register_blueprint(cook)
 
-CORS(user, origins='*', supports_credentials=True)
+CORS(user, origins=['*'], supports_credentials=True)
 app.register_blueprint(user)
 
 # Start the app and create tables
