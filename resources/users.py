@@ -53,6 +53,15 @@ def login():
   except models.DoesNotExist:
     return jsonify(data={}, status={"code": 401, "message": "User does not exist"})
 
+@user.route('/', methods=["GET"])
+def getUsers():
+  try:
+    users = [model_to_dict(user) for user in models.Users.select()]
+    print(users)
+    return jsonify(data=users, status={"code": 200, "message": "Here are the users"})
+  except models.DoesNotExist:
+    return jsonify(data={}, status={"code": 401, "message": "Failed to retrieve the users"})
+
 
 # End a session by logging out
 @user.route('/logout', methods=["GET"])
