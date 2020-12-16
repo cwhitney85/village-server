@@ -8,6 +8,15 @@ from playhouse.shortcuts import model_to_dict
 meal = Blueprint('meals', __name__, url_prefix="/api/v1/meals")
 
 
+# Get all meals
+@meal.route('/', methods=["GET"])
+def get_all_meals():
+  try:
+    meals = [model_to_dict(meals) for meals in models.Meals.select()]
+    return jsonify (data=meals, status={"code": 200, "message": "Success"})
+  except models.DoesNotExist:
+    return jsonify(data={}, status={"code": 401, "message": "Error getting the resources"})
+
 # Create a Meal
 @meal.route('/<cookid>', methods=["POST"])
 def create_meal(cookid):
