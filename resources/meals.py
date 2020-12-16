@@ -27,3 +27,8 @@ def create_meal(cookid):
   new_meal = models.Meals.create(name=payload['name'], cuisine=payload['cuisine'], price=payload['price'], units=payload['units'], recipe=payload['recipe'], image=payload['image'], cook_location=cook.user_location, cook=cook.user_id)
   meal_dict = model_to_dict(new_meal)
   return jsonify(data=meal_dict, status={"code": 200, "message": "Meal created"})
+
+  # Get a single meal
+  @meal.route('/<mealid>', methods=["GET"])
+  def get_a_meal():
+    
