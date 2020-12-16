@@ -23,19 +23,20 @@ class Cooks(Model):
   avatar = CharField(default='https://tfnbk-bank.com/wp-content/uploads/2018/10/avatar.png')
   banner = CharField()
 
-  user = ForeignKeyField(Users, backref='cook')
+  user = ForeignKeyField(Users, backref='cook', primary_key=True)
 
   class Meta:
     database = DATABASE
 
 # Meal model with one to many relationship to cook
 class Meals(Model):
+  name = CharField()
   cuisine = CharField()
   price = FloatField()
   units = IntegerField()
   recipe = TextField()
   image = CharField()
-  cook_location = ForeignKeyField(Cooks.user_location, backref='hub')
+  cook_location = CharField(default=ForeignKeyField(Cooks.user_location, backref='delivery'))
 
   cook = ForeignKeyField(Cooks, backref='meal')
 

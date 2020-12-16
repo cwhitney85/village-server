@@ -32,4 +32,4 @@ def create_cook():
 
   new_cook = models.Cooks.create(username=payload['username'], specialty=payload['specialty'], user_location=current_user.address, avatar=payload['avatar'], banner=payload['banner'], user=current_user.id)
   cook_dict = model_to_dict(new_cook)
-  return jsonify(dats=cook_dict, status={"code": 200, "message": "Cook Created"})
+  return jsonify(data=cook_dict, status={"code": 200, "message": "Cook Created"})

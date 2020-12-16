@@ -8,6 +8,7 @@ PORT = 8000
 import models
 from resources.cooks import cook
 from resources.users import user
+from resources.meals import meal
 
 login_manager = LoginManager()
 
@@ -21,7 +22,10 @@ login_manager.init_app(app)
 @login_manager.user_loader
 def load_user(userid):
   try:
-    return models.Users.get(models.Users.id == userid)
+    session = models.Users.get(models.Users.id == userid)
+    print(session)
+    return session
+    # return models.Users.get(models.Users.id == userid)
   except models.DoesNotExist:
     return None
 
@@ -47,6 +51,9 @@ app.register_blueprint(cook)
 
 CORS(user, origins=['*'], supports_credentials=True)
 app.register_blueprint(user)
+
+CORS(meal, origins=['*'], supports_credentials=True)
+app.register_blueprint(meal)
 
 # Start the app and create tables
 if __name__ == '__main__':
