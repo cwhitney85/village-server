@@ -29,6 +29,5 @@ def create_meal(cookid):
   return jsonify(data=meal_dict, status={"code": 200, "message": "Meal created"})
 
   # Get a single meal
-  @meal.route('/<mealid>', methods=["GET"])
-  def get_a_meal():
-    
+  # @meal.route('/<mealid>', methods=["GET"])
+  # def get_a_meal():
