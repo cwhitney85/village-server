@@ -17,6 +17,19 @@ def get_all_meals():
   except models.DoesNotExist:
     return jsonify(data={}, status={"code": 401, "message": "Error getting the resources"})
 
+
+# Get a meal by ID
+@meal.route('/<mealid>', methods=["GET"])
+def get_meal(mealid):
+  try:
+    meal = models.Meals.get_by_id(mealid)
+    meal_dict = model_to_dict(meal)
+    return jsonify(data=meal_dict, status={"code": 200, "message": "Success here's your meal"})
+  except models.DoesNotExist:
+    return jsonify(data={}, stats={"code": 401, "message": "We couldn't find this meal, sorry"})
+
+
+
 # Create a Meal
 @meal.route('/<cookid>', methods=["POST"])
 def create_meal(cookid):
