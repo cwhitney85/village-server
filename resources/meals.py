@@ -22,7 +22,7 @@ def get_all_meals():
 @meal.route('/madeby/<cookid>', methods=["GET"])
 def get_cook_meals(cookid):
   try:
-    meals = [model_to_dict(meals) for meals in models.Meals.select().where(models.Meals.id == cookid)]
+    meals = [model_to_dict(meals) for meals in models.Meals.select().where(models.Meals.cook_id == cookid)]
     return jsonify(data=meals, status={"code": 200, "message": "Success, look at all these meals"})
   except models.DoesNotExist:
     return jsonify(data={}, status={"code": 401, "message": "Sorry, no meals here"})
