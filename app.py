@@ -1,3 +1,4 @@
+import os
 from flask import Flask, jsonify, g
 from flask_cors import CORS
 from flask_login import LoginManager
@@ -55,7 +56,12 @@ app.register_blueprint(user)
 CORS(meal, origins=['*'], supports_credentials=True)
 app.register_blueprint(meal)
 
-# Start the app and create tables
+# Initialize on Heroku
+if 'ON_HEROKU' in os.environ:
+  print('\non heroku!')
+  models.initialize()
+
+# Start the app and create tables locally
 if __name__ == '__main__':
   models.initialize()
   app.run(debug=DEBUG, port=PORT)
