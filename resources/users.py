@@ -47,6 +47,7 @@ def login():
       del user_dict['password']
       login_user(user)
       print(user, ' this is current user')
+      print(current_user.address)
       return jsonify(data=user_dict, status={"code": 200, "message": "Successful login!"})
     else:
       return jsonify(data={}, status={"code": 401, "message": "Username or Password is incorrect"})
