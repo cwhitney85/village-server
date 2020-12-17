@@ -18,6 +18,16 @@ def get_all_meals():
     return jsonify(data={}, status={"code": 401, "message": "Error getting the resources"})
 
 
+# Get all meals by corresponding cook
+@meal.route('/madeby/<cookid>', methods=["GET"])
+def get_cook_meals(cookid):
+  try:
+    meals = [model_to_dict(meals) for meals in models.Meals.select().where(models.Meals.id == cookid)]
+    return jsonify(data=meals, status={"code": 200, "message": "Success, look at all these meals"})
+  except models.DoesNotExist:
+    return jsonify(data={}, status={"code": 401, "message": "Sorry, no meals here"})
+
+
 # Get a meal by ID
 @meal.route('/<mealid>', methods=["GET"])
 def get_meal(mealid):

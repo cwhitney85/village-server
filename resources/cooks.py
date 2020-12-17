@@ -40,7 +40,7 @@ def get_some_cook(cookid):
 def create_cook():
   payload = request.get_json()
   print(payload)
-
+  
   new_cook = models.Cooks.create(username=payload['username'], specialty=payload['specialty'], user_location=current_user.address, avatar=payload['avatar'], banner=payload['banner'], user=current_user.id)
   cook_dict = model_to_dict(new_cook)
   return jsonify(data=cook_dict, status={"code": 200, "message": "Cook Created"})
