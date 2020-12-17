@@ -10,6 +10,7 @@ cook = Blueprint('cooks', __name__, url_prefix='/api/v1/cooks')
 @cook.route('/test', methods=["GET"])
 @login_required
 def index():
+  print(current_user)
   return "This is a cooking app for some reason"
 
 
@@ -40,7 +41,7 @@ def get_some_cook(cookid):
 def create_cook():
   payload = request.get_json()
   print(payload)
-  
+  print('hi')
   new_cook = models.Cooks.create(username=payload['username'], specialty=payload['specialty'], avatar=payload['avatar'], banner=payload['banner'], user=current_user.id)
   cook_dict = model_to_dict(new_cook)
   return jsonify(data=cook_dict, status={"code": 200, "message": "Cook Created"})
