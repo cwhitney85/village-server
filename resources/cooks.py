@@ -26,12 +26,12 @@ def get_my_cook():
 
 
 # Get a cook by id
-@cook.route('/', methods=["GET"])
+@cook.route('/<cookid>', methods=["GET"])
 def get_some_cook(cookid):
   try:
     cook = models.Cooks.get_by_id(cookid)
     cook_dict = model_to_dict(cook)
-    return jsonify(data={cook_dict}, status={"code": 200, "message": "Success, have a look at your cook"})
+    return jsonify(data=cook_dict, status={"code": 200, "message": "Success, have a look at your cook"})
   except models.DoesNotExist:
     return jsonify(data={}, status={"code": 401, "message": "Cook not found"})
 
