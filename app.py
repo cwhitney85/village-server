@@ -47,13 +47,13 @@ def after_request(response):
 def index():
   return "<h1>Let's Get Cookin'</h1>"
 
-CORS(cook, origins=['*'], supports_credentials=True)
+CORS(cook, origins=['http://localhost:3000', 'https://village-kitchen.herokuapp.com'], supports_credentials=True)
 app.register_blueprint(cook)
 
-CORS(user, origins=['*'], supports_credentials=True)
+CORS(user, origins=['http://localhost:3000', 'https://village-kitchen.herokuapp.com'], supports_credentials=True)
 app.register_blueprint(user)
 
-CORS(meal, origins=['*'], supports_credentials=True)
+CORS(meal, origins=['http://localhost:3000', 'https://village-kitchen.herokuapp.com'], supports_credentials=True)
 app.register_blueprint(meal)
 
 # Initialize on Heroku
